@@ -80,7 +80,7 @@ DATABASES = {
         "NAME": "prodcast2.0",
         "USER": "postgres",
         "PASSWORD": "1",
-        "HOST": "localhost",   # IP сервера с PostgreSQL
+        "HOST": "172.17.5.130",   # IP сервера с PostgreSQL
         "PORT": "5432",
     }
 }
@@ -126,12 +126,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
 # Redis в качестве брокера
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
-# Хранилище результатов (опционально)
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL='redis://172.17.5.130:6379/0'
+CELERY_RESULT_BACKEND='redis://172.17.5.130:6379/1'
 
 class DisableMigrations:
     def __contains__(self, item):

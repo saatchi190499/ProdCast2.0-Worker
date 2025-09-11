@@ -10,7 +10,6 @@ def run_scenario(self, scenario_id: int, start_date: str, end_date: str):
     # self здесь нужен только если bind=True (для update_state)
     scenario = ScenarioClass.objects.get(scenario_id=scenario_id)
     scenario.status = "STARTED"
-    scenario.server.server_name = self.request.hostname
     scenario.start_date = timezone.now()
     scenario.save()
 
